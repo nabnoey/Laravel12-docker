@@ -24,12 +24,12 @@ jobs:
         run: docker build -t ghcr.io/ntkfxy/laravel12-docker:latest .
 
       - name: Push Docker Image
-        run: docker push ghcr.io/ntkfxy/laravel-app:latest
+        run: docker push ghcr.io/ntkfxy/laravel12-docker:latest
 
       - name: Extract static files from container
-        run: 
+        run: |
           CONTAINER_ID=$(docker create ghcr.io/ntkfxy/laravel12-docker:latest)
-          docker cp $CONTAINER_ID:/usr/share/nginx/html ./dist
+          docker cp $CONTAINER_ID:/var/www/html/public ./dist
           docker rm -v $CONTAINER_ID
 
       - name: Deploy to GitHub Pages
