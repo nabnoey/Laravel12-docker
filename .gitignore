@@ -1,0 +1,12 @@
+# Docker runtime data
+mysql/data/
+redis/data/
+
+# Laravel
+/vendor
+/node_modules
+.env
+
+# Logs & cache
+/storage/logs/
+storage/framework/
