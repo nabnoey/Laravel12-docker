@@ -29,8 +29,9 @@ jobs:
       - name: Extract static files from container
         run: |
           CONTAINER_ID=$(docker create ghcr.io/ntkfxy/laravel12-docker:latest)
-          docker cp $CONTAINER_ID:/var/www/html/public ./dist
+          docker cp $CONTAINER_ID:/var/www/html/src/public ./dist
           docker rm -v $CONTAINER_ID
+
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
