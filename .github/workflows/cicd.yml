@@ -1,4 +1,4 @@
-name: build and deploy laravel app
+name: build laravel docker image
 
 on:
   push:
@@ -6,11 +6,10 @@ on:
       - main
 
 permissions:
-  contents: write
   packages: write
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,16 +24,3 @@ jobs:
 
       - name: Push Docker Image
         run: docker push ghcr.io/ntkfxy/laravel12-docker:latest
-
-      - name: Extract static files from container
-        run: |
-          CONTAINER_ID=$(docker create ghcr.io/ntkfxy/laravel12-docker:latest)
-          docker cp $CONTAINER_ID:/var/www/html/src/public ./dist
-          docker rm -v $CONTAINER_ID
-
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: dist
