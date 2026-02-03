@@ -80,6 +80,7 @@ services:
   mailhog:
     image: mailhog/mailhog:v1.0.1
     container_name: laravel12_mailhog
+    platform: linux/amd64
     ports:
       - 8025:8025  # เว็บดูเมล
       - "1025:1025"  # SMTP
